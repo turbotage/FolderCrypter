@@ -76,9 +76,6 @@ def get_key(verbose_pass=False):
 
 	time1 = time.time()
 
-	"""
-	kdf = PBKDF2HMAC(algorithm=hashes.SHA256(), length=32, salt = salt, iterations=5000000, backend=default_backend())
-	"""
 	kdf = Scrypt(salt = salt, length=32, n = 2**21, r=8, p=1)
 
 	#key = base64.urlsafe_b64encode(kdf.derive(password1))
@@ -184,7 +181,7 @@ def decrypt(input_file_names, encryption_folder_name, key):
 			decrypted_data, filename = decrypted_data.rsplit(b'FILENAME:', 1)
 			decrypted_data, dir_name = decrypted_data.rsplit(b'DIR:', 1)
 			filename = filename.decode()
-			dir_name = dir_name.decode()
+			dir_name = os.path.normpath(dir_name).decode()
 
 			decrypted_file_path = dir_name + os.sep + filename
 
