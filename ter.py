@@ -174,7 +174,7 @@ def decrypt(input_file_names, encryption_folder_name, key):
 			try:
 				decrypted_data = aesgcm.decrypt(nonce, encrypted_data, auth)
 			except InvalidTag:
-				print("Invalid auth, nonce, or key")
+				print("Invalid auth, nonce or key")
 				exit(-1)
 
 
