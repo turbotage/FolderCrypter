@@ -183,7 +183,7 @@ def decrypt(input_file_names, encryption_folder_name, key):
 			filename = filename.decode()
 			dir_name = os.path.normpath(dir_name).decode()
 
-			decrypted_file_path = dir_name + os.sep + filename
+			decrypted_file_path = os.path.join(dir_name, filename)
 
 			os.makedirs(os.path.dirname(decrypted_file_path), exist_ok=True)
 			# Ignore padding files
